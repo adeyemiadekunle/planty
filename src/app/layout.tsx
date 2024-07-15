@@ -5,6 +5,8 @@ import { Lilita_One } from 'next/font/google';
 import { Root } from '@/components/Root/Root';
 
 import './_assets/globals.css';
+import 'normalize.css/normalize.css';
+import '@telegram-apps/telegram-ui/dist/styles.css';
 import Navigation from '@/components/Navigation';
 
 export const metadata: Metadata = {
@@ -22,7 +24,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
     <html lang="en">
       <body className={`${Space_mono.className} antialiased `}>
         <Root>
-          <main className='flex flex-col justify-between h-full py-2'>
+          <main className='flex flex-col justify-between h-full py-3'>
             <div className='h-full'>{children}</div>
             <Navigation />
           </main>
