@@ -8,7 +8,7 @@ import Navigation from '@/components/Navigation';
 
 export default function Home() {
   return (
-    <section className='flex flex-col justify-between border h-full'>
+    <section className='border'>
       <div>Home</div>
     </section>
   );

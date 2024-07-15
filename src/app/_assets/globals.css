@@ -4,8 +4,10 @@
 
 html,
 body {
-    height: 100dvh;
+    height: 100%;
     margin: 0;
     font-size: 16px;
     padding: 0 12px;
+    background: linear-gradient(5deg, #5E3034, #E6E5D1, #5E3034);
+    color: white;
 }
