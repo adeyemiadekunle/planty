@@ -24,8 +24,8 @@ export default function RootLayout({ children }: PropsWithChildren) {
     <html lang="en">
       <body className={`${Space_mono.className} antialiased `}>
         <Root>
-          <main className='flex flex-col justify-between h-full py-3'>
-            <div className='h-full'>{children}</div>
+          <main className='p-3 flex flex-col justify-between h-full'>
+            <div className=''>{children}</div>
             <Navigation />
           </main>
         </Root>

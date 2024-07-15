@@ -19,8 +19,29 @@ import { ErrorBoundary } from '@/components/ErrorBoundary';
 import { ErrorPage } from '@/components/ErrorPage';
 import { useTelegramMock } from '@/hooks/useTelegramMock';
 import { useDidMount } from '@/hooks/useDidMount';
+import { createContext, useContext } from 'react';
 
 import './styles.css';
+
+// Define the Viewport type
+type Viewport = {
+  height: number;
+  width: number;
+  // Add other properties as needed
+};
+
+// Create a context for the viewport
+const ViewportContext = createContext<Viewport | undefined>(undefined);
+
+// Custom hook to use the viewport context
+export function useAppViewport() {
+  const context = useContext(ViewportContext);
+  if (context === null) {
+    throw new Error('useAppViewport must be used within a ViewportProvider');
+  }
+  return context;
+}
+
 
 function App(props: PropsWithChildren) {
   const lp = useLaunchParams();
@@ -32,17 +53,28 @@ function App(props: PropsWithChildren) {
     }
   }, [viewport]);
 
-  // Expand the application.
-  postEvent('web_app_expand');
+  useEffect(() => {
+    // Expand the application by default
+    postEvent('web_app_expand');
+  }, []);
+
+  const { height, width, isExpanded } = viewport || {};
 
   return (
-    <AppRoot
-      // appearance={miniApp.isDark ? 'dark' : 'light'}
-      platform={['macos', 'ios'].includes(lp.platform) ? 'ios' : 'base'}
-      className='h-full'
-    >
-      {props.children}
-    </AppRoot>
+
+    <ViewportContext.Provider value={viewport}>
+      <AppRoot
+        platform={['macos', 'ios'].includes(lp.platform) ? 'ios' : 'base'}
+        className='h-full'
+        style={{
+          // Use viewport dimensions
+          height: height ? `${height}px` : '100%',
+          width: width ? `${width}px` : '100%',
+        }}
+      >
+        {props.children}
+      </AppRoot>
+    </ViewportContext.Provider>
   );
 }
 
