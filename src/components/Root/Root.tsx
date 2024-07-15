@@ -27,7 +27,9 @@ function App(props: PropsWithChildren) {
   const viewport = useViewport();
 
   useEffect(() => {
-    return viewport && bindViewportCSSVars(viewport);
+    if (viewport) {
+      bindViewportCSSVars(viewport);
+    }
   }, [viewport]);
 
   // Expand the application.
