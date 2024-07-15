@@ -24,6 +24,11 @@ import './styles.css';
 
 function App(props: PropsWithChildren) {
   const lp = useLaunchParams();
+  const viewport = useViewport();
+
+  useEffect(() => {
+    return viewport && bindViewportCSSVars(viewport);
+  }, [viewport]);
 
   // Expand the application.
   postEvent('web_app_expand');
