@@ -5,9 +5,10 @@
 html,
 body {
     height: var(--tg-viewport-height);
+    width: var(--tg-viewport-width);
+    max-height: var(--tg-viewport-stable-height);
     margin: 0;
     font-size: 16px;
-    padding: 0 12px;
     background: linear-gradient(5deg, #5E3034, #E6E5D1, #5E3034);
     color: white;
 }
