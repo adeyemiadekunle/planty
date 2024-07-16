@@ -48,15 +48,16 @@ function App(props: PropsWithChildren) {
   const viewport = useViewport();
 
   useEffect(() => {
+    // Expand the application by default
+    postEvent('web_app_expand');
+  }, []);
+
+  useEffect(() => {
     if (viewport) {
       bindViewportCSSVars(viewport);
     }
   }, [viewport]);
 
-  useEffect(() => {
-    // Expand the application by default
-    postEvent('web_app_expand');
-  }, []);
 
   const { height, width, isExpanded } = viewport || {};
 
