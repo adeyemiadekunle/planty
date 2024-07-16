@@ -47,10 +47,7 @@ function App(props: PropsWithChildren) {
   const lp = useLaunchParams();
   const viewport = useViewport();
 
-  useEffect(() => {
-    // Expand the application by default
-    postEvent('web_app_expand');
-  }, []);
+  postEvent('web_app_expand');
 
   useEffect(() => {
     if (viewport) {
@@ -59,7 +56,7 @@ function App(props: PropsWithChildren) {
   }, [viewport]);
 
 
-  const { height, width, isExpanded } = viewport || {};
+  // const { height, width, isExpanded } = viewport || {};
 
   return (
 
@@ -67,11 +64,11 @@ function App(props: PropsWithChildren) {
       <AppRoot
         platform={['macos', 'ios'].includes(lp.platform) ? 'ios' : 'base'}
         className='h-full'
-        style={{
-          // Use viewport dimensions
-          height: height ? `${height}px` : '100%',
-          width: width ? `${width}px` : '100%',
-        }}
+        // style={{
+        //   // Use viewport dimensions
+        //   height: height ? `${height}px` : '100%',
+        //   width: width ? `${width}px` : '100%',
+        // }}
       >
         {props.children}
       </AppRoot>
